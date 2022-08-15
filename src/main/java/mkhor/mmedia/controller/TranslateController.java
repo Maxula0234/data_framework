@@ -1,5 +1,6 @@
 package mkhor.mmedia.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import mkhor.mmedia.dto.request.TranslateReq;
 import mkhor.mmedia.dto.response.translate.TranslateResult;
 import mkhor.mmedia.service.TranslateService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("translate")
+@Hidden
 public class TranslateController {
 
     @Autowired

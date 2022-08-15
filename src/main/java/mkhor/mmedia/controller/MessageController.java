@@ -1,5 +1,6 @@
 package mkhor.mmedia.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import mkhor.mmedia.exception.NotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("message")
+@Hidden
 public class MessageController {
     public List<Map<String, String>> messages = new ArrayList<Map<String, String>>() {{
         add(new HashMap<String, String>() {{
