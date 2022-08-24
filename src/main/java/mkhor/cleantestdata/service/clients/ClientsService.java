@@ -12,4 +12,7 @@ public interface ClientsService {
     void deleteClient(long idClient);
 
     List<Client> getClients();
+
+    void updateClient(Client client);
 }
+

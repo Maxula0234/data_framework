@@ -28,15 +28,10 @@ public class ClientsServiceImpl implements ClientsService {
 
     @Override
     public Client getClient(long id) {
-        Optional<Client> client = allClient.stream()
+        return allClient.stream()
                 .filter(cl -> cl.getId() == id)
-                .findFirst();
-        if (client.isPresent()) {
-            return client.get();
-        } else {
-            log.info("Клиент с id {} не найден", id);
-            return new Client();
-        }
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Клиент не найден"));
     }
 
     @Override
@@ -56,5 +51,27 @@ public class ClientsServiceImpl implements ClientsService {
     @Override
     public List<Client> getClients() {
         return allClient;
+    }
+
+    @Override
+    public void updateClient(Client client) {
+        Optional<Client> first = allClient.stream()
+                .filter(cl -> cl.getId() == client.getId())
+                .findFirst();
+
+        if (first.isPresent()) {
+            Client clFromBd = first.get();
+            if (!clFromBd.getFirstName().equalsIgnoreCase(client.getFirstName()))
+                clFromBd.setFirstName(client.getFirstName());
+            if (!clFromBd.getDateBirth().equals(client.getDateBirth()))
+                clFromBd.setDateBirth(client.getDateBirth());
+            if (!clFromBd.isReserve() == client.isReserve())
+                clFromBd.setReserve(client.isReserve());
+
+
+        } else {
+            addNewClient(client);
+            log.info("Клиент добавлен");
+        }
     }
 }

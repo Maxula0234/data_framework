@@ -23,7 +23,7 @@ public class ClientController {
             description = "Позволяет добавить клиента в базу данных"
     )
     public Client addNewClient(@RequestBody Client client) {
-        return null;
+        return clientsService.addNewClient(client);
     }
 
     @GetMapping("{idClient}")
@@ -40,7 +40,7 @@ public class ClientController {
             summary = "Удалим клиента из базы",
             description = "Позволяет удалить клиента из базы по идентификатору"
     )
-    public void deleteClient(@PathVariable long idClient){
+    public void deleteClient(@PathVariable long idClient) {
         clientsService.deleteClient(idClient);
     }
 
@@ -49,7 +49,18 @@ public class ClientController {
             summary = "Получить всех клиентов",
             description = "Позволяет получить всех клиентов"
     )
-    public List<Client> getAllClients(){
+    public List<Client> getAllClients() {
         return clientsService.getClients();
+    }
+
+    @PutMapping("{idClient}/reserved")
+    @Operation(
+            summary = "Зарезервируем клиента",
+            description = "Позволяет забукировать клиентов"
+    )
+    public void reservedClient(@PathVariable long idClient) {
+        Client client = getClient(idClient);
+        client.setReserve(true);
+        clientsService.updateClient(client);
     }
 }
