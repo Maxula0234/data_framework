@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("cards")
@@ -21,10 +23,19 @@ public class CardsController {
 
     @GetMapping("{idCard}")
     @Operation(
-            summary = "Добавить клиента",
-            description = "Позволяет добавить клиента в базу данных"
+            summary = "Получить карту по идентификатору",
+            description = "Позволяет получить карту клиента"
     )
     public Card getCard(@PathVariable long idCard) {
         return cardsService.getCard(idCard);
+    }
+
+    @GetMapping()
+    @Operation(
+            summary = "Получить все карты",
+            description = "Позволяет получить карты, сохраненные в базе"
+    )
+    public List<Card> getAllCards() {
+        return cardsService.getCards();
     }
 }
