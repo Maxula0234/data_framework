@@ -1,7 +1,7 @@
 package mkhor.cleantestdata.service.cards;
 
-import mkhor.cleantestdata.CardExpection;
 import mkhor.cleantestdata.dto.request.card.Card;
+import mkhor.cleantestdata.exception.CardNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ public class CardsServiceImpl implements CardsService {
         return allCard.stream()
                 .filter(card -> card.getId() == idCard)
                 .findFirst()
-                .orElseThrow(() -> new CardExpection("Card not found, id - " + idCard));
+                .orElseThrow(() -> new CardNotFoundException("Card not found, id - " + idCard));
     }
 
     @Override

@@ -2,6 +2,7 @@ package mkhor.cleantestdata.service.clients;
 
 import lombok.extern.slf4j.Slf4j;
 import mkhor.cleantestdata.dto.request.client.Client;
+import mkhor.cleantestdata.exception.ClientNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,21 +32,18 @@ public class ClientsServiceImpl implements ClientsService {
         return allClient.stream()
                 .filter(cl -> cl.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Клиент не найден"));
+                .orElseThrow(() -> new ClientNotFoundException("Клиент не найден"));
     }
 
     @Override
     public void deleteClient(long idClient) {
-        Optional<Client> client = allClient.stream()
+        Client client = allClient.stream()
                 .filter(cl -> cl.getId() == idClient)
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new ClientNotFoundException("Клиент с идентификатром " + idClient + " не найден"));
 
-        if (client.isPresent()) {
-            allClient.remove(client.get());
-            log.info("Клиента {} удален из базы", idClient);
-        } else {
-            log.info("Клиент с идентификатором {} не найден", idClient);
-        }
+        allClient.remove(client);
+        log.info("Клиента {} удален из базы", idClient);
     }
 
     @Override
@@ -67,8 +65,6 @@ public class ClientsServiceImpl implements ClientsService {
                 clFromBd.setDateBirth(client.getDateBirth());
             if (!clFromBd.isReserve() == client.isReserve())
                 clFromBd.setReserve(client.isReserve());
-
-
         } else {
             addNewClient(client);
             log.info("Клиент добавлен");
