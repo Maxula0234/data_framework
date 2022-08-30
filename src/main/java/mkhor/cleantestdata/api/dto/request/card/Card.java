@@ -1,4 +1,4 @@
-package mkhor.cleantestdata.dto.request.card;
+package mkhor.cleantestdata.api.dto.request.card;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

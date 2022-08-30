@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MmediaApplication {
+public class CleanTestData {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MmediaApplication.class, args);
+		SpringApplication.run(CleanTestData.class, args);
 
 	}
 

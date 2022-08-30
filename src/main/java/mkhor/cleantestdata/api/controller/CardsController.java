@@ -1,9 +1,9 @@
-package mkhor.cleantestdata.controller;
+package mkhor.cleantestdata.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import mkhor.cleantestdata.dto.request.card.Card;
-import mkhor.cleantestdata.service.cards.CardsService;
+import mkhor.cleantestdata.api.dto.request.card.Card;
+import mkhor.cleantestdata.api.service.cards.CardsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

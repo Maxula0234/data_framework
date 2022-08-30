@@ -1,9 +1,9 @@
-package mkhor.cleantestdata.controller;
+package mkhor.cleantestdata.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import mkhor.cleantestdata.dto.request.client.Client;
-import mkhor.cleantestdata.service.clients.ClientsService;
+import mkhor.cleantestdata.api.service.clients.ClientsService;
+import mkhor.cleantestdata.api.dto.request.client.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

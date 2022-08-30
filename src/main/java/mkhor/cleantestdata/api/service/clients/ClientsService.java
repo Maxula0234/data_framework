@@ -1,6 +1,6 @@
-package mkhor.cleantestdata.service.clients;
+package mkhor.cleantestdata.api.service.clients;
 
-import mkhor.cleantestdata.dto.request.client.Client;
+import mkhor.cleantestdata.api.dto.request.client.Client;
 
 import java.util.List;
 

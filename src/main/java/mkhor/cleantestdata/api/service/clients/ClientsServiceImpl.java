@@ -1,11 +1,12 @@
-package mkhor.cleantestdata.service.clients;
+package mkhor.cleantestdata.api.service.clients;
 
 import lombok.extern.slf4j.Slf4j;
-import mkhor.cleantestdata.dto.request.client.Client;
-import mkhor.cleantestdata.exception.ClientNotFoundException;
+import mkhor.cleantestdata.db.dao.clients.ClientsDao;
+import mkhor.cleantestdata.api.dto.request.client.Client;
+import mkhor.cleantestdata.api.exception.ClientNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +17,8 @@ public class ClientsServiceImpl implements ClientsService {
 
     List<Client> allClient = new ArrayList<>();
 
-    {
-        allClient.add(new Client("Ivan", "Ivanovich", "Petrov", "79991112233", "i@i.ru", LocalDate.now(), 1));
-        allClient.add(new Client("Petr", "Ivanov", "Popov", "79991112244", "i@i2.ru", LocalDate.now(), 2));
-    }
+    @Autowired
+    private ClientsDao clientsDao;
 
     @Override
     public Client addNewClient(Client client) {
@@ -48,7 +47,7 @@ public class ClientsServiceImpl implements ClientsService {
 
     @Override
     public List<Client> getClients() {
-        return allClient;
+        return clientsDao.getAllClient();
     }
 
     @Override

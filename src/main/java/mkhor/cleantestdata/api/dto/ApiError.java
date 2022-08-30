@@ -1,4 +1,4 @@
-package mkhor.cleantestdata.dto;
+package mkhor.cleantestdata.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

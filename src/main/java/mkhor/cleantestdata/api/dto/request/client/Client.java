@@ -1,4 +1,4 @@
-package mkhor.cleantestdata.dto.request.client;
+package mkhor.cleantestdata.api.dto.request.client;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -26,12 +26,12 @@ public class Client {
     private String phoneNumber;
     @Schema(defaultValue = "m@test.ru")
     private String email;
-    private LocalDate dateBirth;
+    private String dateBirth;
     @Schema(defaultValue = "false")
     private boolean reserve;
     private long id;
 
-    public Client(String firstName, String lastName, String thirdName, String phoneNumber, String email, LocalDate dateBirth, long id) {
+    public Client(String firstName, String lastName, String thirdName, String phoneNumber, String email, String dateBirth, long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.thirdName = thirdName;
