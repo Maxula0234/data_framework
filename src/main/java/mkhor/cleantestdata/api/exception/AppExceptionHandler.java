@@ -30,4 +30,9 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ClientNotBeAdd.class)
+    public ResponseEntity<Object> handleClientNotBeAdd(CardNotFoundException ex, WebRequest webRequest) {
+        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now()), HttpStatus.BAD_REQUEST);
+    }
+
 }

@@ -11,3 +11,5 @@ todo list
   - Создать контроллер для API
   - Создать сервисный слой для счетов
   - Создать слой ДАО для хранения и получения данных 
+
+ [swagger](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/Client/getAllClients)
