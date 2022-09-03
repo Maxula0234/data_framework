@@ -6,14 +6,11 @@ import mkhor.cleantestdata.db.dao.clients.ClientsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
 public class ClientsServiceImpl implements ClientsService {
-
-    List<Client> allClient = new ArrayList<>();
 
     @Autowired
     private ClientsDao clientsDao;
@@ -41,7 +38,7 @@ public class ClientsServiceImpl implements ClientsService {
     }
 
     @Override
-    public void updateClient(Client client,long idClient) {
-        clientsDao.updateClient(client,idClient);
+    public void updateClient(Client client, long idClient) {
+        clientsDao.updateClient(client, idClient);
     }
 }

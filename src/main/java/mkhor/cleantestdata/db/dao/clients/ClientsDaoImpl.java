@@ -31,7 +31,13 @@ public class ClientsDaoImpl extends BaseDao implements ClientsDao {
         String query = String.format("INSERT INTO CLIENTS " +
                         "(first_name,last_name,third_name,phone_number,email,date_birth,reserve)" +
                         "VALUES ('%s','%s','%s','%s','%s',cast('%s' as date),%b)",
-                client.getFirstName(), client.getLastName(), client.getThirdName(), client.getPhoneNumber(), client.getEmail(), client.getDateBirth(), false);
+                client.getFirstName(),
+                client.getLastName(),
+                client.getThirdName(),
+                client.getPhoneNumber(),
+                client.getEmail(),
+                client.getDateBirth(),
+                false);
 
         try {
             getJdbcTemplate().update(query);
@@ -79,9 +85,13 @@ public class ClientsDaoImpl extends BaseDao implements ClientsDao {
                             "date_birth=cast('%s' as date), " +
                             "reserve='%b' " +
                             "WHERE id = '%s' ",
-                    client.getFirstName(), client.getLastName(),
-                    client.getThirdName(), client.getPhoneNumber(),
-                    client.getEmail(), client.getDateBirth(), client.isReserve(),
+                    client.getFirstName(),
+                    client.getLastName(),
+                    client.getThirdName(),
+                    client.getPhoneNumber(),
+                    client.getEmail(),
+                    client.getDateBirth(),
+                    client.isReserve(),
                     idClient
             );
 

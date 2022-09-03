@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("clients")
 @Tag(name = "Client", description = "Сервис для взаимодействия с тестовыми клиентами")
-public class ClientController {
+public class ClientController extends BaseController {
 
     @Autowired
     private ClientsService clientsService;
@@ -61,7 +61,7 @@ public class ClientController {
     public void reservedClient(@PathVariable long idClient) {
         Client client = getClient(idClient);
         client.setReserve(true);
-        clientsService.updateClient(client,idClient);
+        clientsService.updateClient(client, idClient);
     }
 
     @PatchMapping("{idClient}")
@@ -70,6 +70,6 @@ public class ClientController {
             description = "Позволяет обновить клиента"
     )
     public void updateClient(@RequestBody Client client, @PathVariable long idClient) {
-        clientsService.updateClient(client,idClient);
+        clientsService.updateClient(client, idClient);
     }
 }

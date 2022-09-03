@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -24,7 +24,7 @@ public class Card {
             defaultValue = "Иванов Иван Иванович"
     )
     private String owner;
-    private LocalDateTime dateIssued;
+    private String dateIssued;
     @Schema(
             name = "Карточный продукт",
             description = "Продукт к которому выпущена карта",

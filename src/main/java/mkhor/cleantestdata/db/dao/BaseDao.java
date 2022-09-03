@@ -11,5 +11,4 @@ public class BaseDao extends JdbcDaoSupport {
     @Value("spring.datasource.url")
     String url;
 
-
 }

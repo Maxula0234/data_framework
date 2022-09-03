@@ -5,10 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import mkhor.cleantestdata.api.dto.request.card.Card;
 import mkhor.cleantestdata.api.service.cards.CardsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("cards")
 @Tag(name = "Cards", description = "Сервис для взаимодействия с тестовыми картами")
-public class CardsController {
+public class CardsController extends BaseController {
 
     @Autowired
     private CardsService cardsService;
@@ -37,5 +34,23 @@ public class CardsController {
     )
     public List<Card> getAllCards() {
         return cardsService.getCards();
+    }
+
+    @PostMapping()
+    @Operation(
+            summary = "Добавить карту в базу",
+            description = "Позволяет добавить карту в базу данных"
+
+    )
+    public Card addCard(@RequestBody Card card) {
+        return cardsService.addCard(card);
+    }
+
+    @PatchMapping("{idCard}")
+    @Operation(
+            summary = "Обновить карту"
+    )
+    public Card updateCard(@RequestBody Card card, @PathVariable long idCard) {
+        return cardsService.updateCard(idCard, card);
     }
 }

@@ -29,5 +29,5 @@ public interface ClientsDao {
 
     void deleteClientById(long idClient);
 
-    Client updateClient(Client client,long idClient);
+    Client updateClient(Client client, long idClient);
 }
