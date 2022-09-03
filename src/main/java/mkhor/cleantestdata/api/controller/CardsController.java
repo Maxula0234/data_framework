@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("cards")
+@RequestMapping("v1/cards")
 @Tag(name = "Cards", description = "Сервис для взаимодействия с тестовыми картами")
 public class CardsController extends BaseController {
 

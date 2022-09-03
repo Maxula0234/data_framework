@@ -19,7 +19,9 @@ public class SwaggerConfig {
                                         .name("Max")
                                         .url("ya.ru")
                                 )
-                                .description("Фремворк для хранения тестовых данных")
+                                .description("Фремворк для хранения тестовых данных \n" +
+                                        "- Клиенты \n" +
+                                        "- Карты")
                                 .version("1.0.0")
                 );
     }
