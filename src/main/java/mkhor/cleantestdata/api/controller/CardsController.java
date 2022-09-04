@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("v1/cards")
@@ -31,8 +32,25 @@ public class CardsController extends BaseController {
             summary = "Получить все карты",
             description = "Позволяет получить карты, сохраненные в базе"
     )
-    public List<Card> getAllCards() {
-        return cardsService.getCards();
+    public List<Card> getCards(@RequestParam(required = false) String pan, @RequestParam(required = false) String cardProduct) {
+        List<Card> allCards = cardsService.getCards();
+
+        if (pan != null && cardProduct != null) {
+            return allCards.stream()
+                    .filter(f -> f.getPan().equalsIgnoreCase(pan))
+                    .filter(f -> f.getCardProduct().equalsIgnoreCase(cardProduct))
+                    .collect(Collectors.toList());
+        } else if (pan != null) {
+            return allCards.stream()
+                    .filter(f -> f.getPan().equalsIgnoreCase(pan))
+                    .collect(Collectors.toList());
+        } else if (cardProduct != null) {
+            return allCards.stream()
+                    .filter(f -> f.getCardProduct().equalsIgnoreCase(cardProduct))
+                    .collect(Collectors.toList());
+        } else {
+            return allCards;
+        }
     }
 
     @PostMapping()
