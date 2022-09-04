@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("v1/cards")
 @Tag(name = "Cards", description = "Сервис для взаимодействия с тестовыми картами")
@@ -52,5 +51,13 @@ public class CardsController extends BaseController {
     )
     public Card updateCard(@RequestBody Card card, @PathVariable long idCard) {
         return cardsService.updateCard(idCard, card);
+    }
+
+    @DeleteMapping("{idCard}")
+    @Operation(
+            summary = "Удалить карту"
+    )
+    public void deleteCard(@PathVariable long idCard) {
+        cardsService.deleteCard(idCard);
     }
 }

@@ -23,7 +23,7 @@ number VARCHAR(60) NOT NULL,
 owner VARCHAR(40) NOT NULL,
 owner_id bigint NOT NULL,
 reserved boolean NOT NULL,
-amount money NOT NULL,
+amount numeric NOT NULL,
 date_issued VARCHAR(40) NOT NULL,
 account_product VARCHAR(40) NOT NULL
 );

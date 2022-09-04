@@ -36,4 +36,9 @@ public class CardsServiceImpl implements CardsService {
     public Card addCard(Card card) {
         return cardsDao.addCard(card);
     }
+
+    @Override
+    public void deleteCard(long idCard) {
+        cardsDao.deleteCard(idCard);
+    }
 }

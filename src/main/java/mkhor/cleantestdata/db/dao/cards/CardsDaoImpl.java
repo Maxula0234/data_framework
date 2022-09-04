@@ -82,4 +82,10 @@ public class CardsDaoImpl extends BaseDao implements CardsDao {
             throw new CardNotBeAdd("Карта не добавлена");
         }
     }
+
+    @Override
+    public void deleteCard(long idCard) {
+        String query = String.format("DELETE FROM CARDS WHERE ID='%s'", idCard);
+        getJdbcTemplate().update(query);
+    }
 }

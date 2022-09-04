@@ -15,4 +15,6 @@ public interface CardsService {
     boolean reservedCard(Card card);
 
     Card addCard(Card card);
+
+    void deleteCard(long idCard);
 }

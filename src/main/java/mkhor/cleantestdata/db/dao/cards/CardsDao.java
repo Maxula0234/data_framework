@@ -18,4 +18,5 @@ public interface CardsDao {
 
     Card addCard(Card card);
 
+    void deleteCard(long idCard);
 }

@@ -60,7 +60,7 @@ public class ClientsDaoImpl extends BaseDao implements ClientsDao {
     public void deleteClientById(long idClient) {
         Client clientById = getClientById(idClient);
 
-        String query = "DELETE from clients where id = " + clientById.getId();
+        String query = "DELETE FROM CLIENTS WHERE ID = " + clientById.getId();
         try {
             getJdbcTemplate().update(query);
         } catch (DataAccessException e) {
