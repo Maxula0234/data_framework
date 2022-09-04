@@ -17,6 +17,17 @@ date_issued VARCHAR(40) NOT NULL,
 card_product VARCHAR(40) NOT NULL
 );
 
+create table if not exists accounts (
+ID serial primary key,
+number VARCHAR(60) NOT NULL,
+owner VARCHAR(40) NOT NULL,
+owner_id bigint NOT NULL,
+reserved boolean NOT NULL,
+amount money NOT NULL,
+date_issued VARCHAR(40) NOT NULL,
+account_product VARCHAR(40) NOT NULL
+);
+
 insert into clients (first_name,last_name,third_name,phone_number,email,date_birth,reserve) values
 ('Maksim', 'Vladislavovich', 'Hor', '79991112233', 'max@i.ru', cast('2015/05/16' as date),false)
 ,
