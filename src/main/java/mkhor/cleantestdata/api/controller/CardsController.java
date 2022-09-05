@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("v1/cards")
+@RequestMapping("${application.endpoint.cards}")
 @Tag(name = "Cards", description = "Сервис для взаимодействия с тестовыми картами")
 public class CardsController extends BaseController {
 

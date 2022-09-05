@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/accounts")
+@RequestMapping("${application.endpoint.account}")
 @Tag(name = "Accounts", description = "Сервис для взаимодействия с тестовыми счетами")
 public class AccountsController extends BaseController {
 
@@ -53,6 +53,6 @@ public class AccountsController extends BaseController {
             description = "Метод позволяет удалить счет из БД"
     )
     public Result deleteAccount(@PathVariable long idAccount) {
-     return    accountsService.deleteAccount(idAccount);
+        return accountsService.deleteAccount(idAccount);
     }
 }

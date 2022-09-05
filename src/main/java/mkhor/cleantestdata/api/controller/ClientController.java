@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/clients")
+@RequestMapping("${application.endpoint.clients}")
 @Tag(name = "Client", description = "Сервис для взаимодействия с тестовыми клиентами")
 public class ClientController extends BaseController {
 
