@@ -75,8 +75,8 @@ public class AccountDaoImpl extends BaseDao implements AccountDao {
     public Account addAccount(Account account) {
         String query = String.format(
                 "INSERT INTO ACCOUNTS " +
-                        "(NUMBER,OWNER,OWNER_ID,RESERVED,AMOUNT,DATE_ISSUED,ACCOUNT_PRODUCT)" +
-                        "VALUES ('%s','%s','%s','%s','%s','%s','%s')",
+                        " (NUMBER,OWNER,OWNER_ID,RESERVED,AMOUNT,DATE_CREATE,ACCOUNT_PRODUCT) " +
+                        " VALUES ('%s','%s','%s','%s','%s','%s','%s')",
                 account.getNumber(),
                 account.getOwner(),
                 account.getOwner_id(),
@@ -92,4 +92,34 @@ public class AccountDaoImpl extends BaseDao implements AccountDao {
         }
         return getAccount(account.getNumber());
     }
+
+    @Override
+    public Account updateAccount(long idAccount, Account account) {
+
+        Account acc = getAccount(idAccount);
+
+        String query = String.format("UPDATE accounts " +
+                        " SET " +
+                        "number='%s', " +
+                        "owner='%s', " +
+                        "owner_id='%s', " +
+                        "reserved='%s', " +
+                        "amount='%s', " +
+                        "date_create=cast('%s' as date), " +
+                        "account_product='%b' " +
+                        "WHERE id = '%s' ",
+                account.getNumber(),
+                account.getOwner(),
+                account.getOwner_id(),
+                account.isReserved(),
+                account.getAmount(),
+                account.getDate_create(),
+                account.getAccount_product(),
+                idAccount
+        );
+
+        getJdbcTemplate().update(query);
+        return getAccount(idAccount);
+    }
+
 }

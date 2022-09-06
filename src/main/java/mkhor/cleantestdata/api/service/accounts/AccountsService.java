@@ -16,4 +16,6 @@ public interface AccountsService {
     Result deleteAccount(long idAccount);
 
     Account addAccount(Account account);
+
+    Account updateAccount(long idAccount,Account account);
 }

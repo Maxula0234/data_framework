@@ -29,7 +29,7 @@ public class ClientsServiceImpl implements ClientsService {
     @Override
     public void deleteClient(long idClient) {
         clientsDao.deleteClientById(idClient);
-        log.info("Клиента {} удален из базы", idClient);
+        log.info("Клиент {} удален из базы", idClient);
     }
 
     @Override

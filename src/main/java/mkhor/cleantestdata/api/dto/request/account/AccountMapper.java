@@ -27,10 +27,10 @@ public class AccountMapper implements RowMapper<Account> {
             account.setReserved(rs.getBoolean("reserved"));
         }
         if (ResultSetUtils.containsColumn(rs, "amount")) {
-            account.setAmount(rs.getFloat("amount"));
+            account.setAmount(rs.getBigDecimal("amount"));
         }
-        if (ResultSetUtils.containsColumn(rs, "date_issued")) {
-            account.setDate_create(rs.getString("date_issued"));
+        if (ResultSetUtils.containsColumn(rs, "date_create")) {
+            account.setDate_create(rs.getString("date_create"));
         }
         if (ResultSetUtils.containsColumn(rs, "account_product")) {
             account.setAccount_product(rs.getString("account_product"));

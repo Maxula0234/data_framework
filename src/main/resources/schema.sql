@@ -24,7 +24,7 @@ owner VARCHAR(40) NOT NULL,
 owner_id bigint NOT NULL,
 reserved boolean NOT NULL,
 amount numeric NOT NULL,
-date_issued VARCHAR(40) NOT NULL,
+date_create VARCHAR(40) NOT NULL,
 account_product VARCHAR(40) NOT NULL
 );
 

@@ -55,4 +55,12 @@ public class AccountsController extends BaseController {
     public Result deleteAccount(@PathVariable long idAccount) {
         return accountsService.deleteAccount(idAccount);
     }
+
+    @PatchMapping("{idAccount}")
+    @Operation(
+            summary = "Обновить счет"
+    )
+    public Account updateAccount(@PathVariable long idAccount, @RequestBody Account account) {
+        return accountsService.updateAccount(idAccount, account);
+    }
 }

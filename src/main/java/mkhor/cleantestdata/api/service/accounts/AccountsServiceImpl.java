@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class AccountsServiceImpl implements AccountsService {
+
     @Autowired
     public AccountDao accountDao;
 
@@ -36,5 +37,10 @@ public class AccountsServiceImpl implements AccountsService {
     @Override
     public Account addAccount(Account account) {
         return accountDao.addAccount(account);
+    }
+
+    @Override
+    public Account updateAccount(long idAccount, Account account) {
+        return accountDao.updateAccount(idAccount, account);
     }
 }
