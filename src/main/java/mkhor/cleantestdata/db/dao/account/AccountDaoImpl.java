@@ -25,6 +25,7 @@ public class AccountDaoImpl extends BaseDao implements AccountDao {
 
     @Override
     public List<Account> getAllAccounts() {
+
         String query = "SELECT * FROM ACCOUNTS";
         List<Account> accountList = getJdbcTemplate().query(query, new AccountMapper());
 
@@ -106,7 +107,7 @@ public class AccountDaoImpl extends BaseDao implements AccountDao {
                         "reserved='%s', " +
                         "amount='%s', " +
                         "date_create=cast('%s' as date), " +
-                        "account_product='%b' " +
+                        "account_product='%s' " +
                         "WHERE id = '%s' ",
                 account.getNumber(),
                 account.getOwner(),

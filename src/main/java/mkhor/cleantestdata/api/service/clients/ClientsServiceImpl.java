@@ -2,6 +2,7 @@ package mkhor.cleantestdata.api.service.clients;
 
 import lombok.extern.slf4j.Slf4j;
 import mkhor.cleantestdata.api.dto.request.client.Client;
+import mkhor.cleantestdata.api.service.BaseService;
 import mkhor.cleantestdata.db.dao.clients.ClientsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ClientsServiceImpl implements ClientsService {
+public class ClientsServiceImpl extends BaseService implements ClientsService {
 
     @Autowired
     private ClientsDao clientsDao;

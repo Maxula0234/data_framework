@@ -3,13 +3,7 @@
 todo list
 - 
 
-- Переписать методы для взаимодействия сущности "клиенты" с БД
-- Переписать методы для взаимодейтсвие сущности "карта" с БД
 - Реализовать авто-генерацию структуры базы данных
 - Добавить новую сущность "Счета"
-  - Создать в БД таблицу для хранения
-  - Создать контроллер для API
-  - Создать сервисный слой для счетов
-  - Создать слой ДАО для хранения и получения данных 
 
- [swagger](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/Client/getAllClients)
+[swagger](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/Client/getAllClients)

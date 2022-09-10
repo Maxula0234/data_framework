@@ -1,6 +1,7 @@
 package mkhor.cleantestdata.api.service.cards;
 
 import mkhor.cleantestdata.api.dto.request.card.Card;
+import mkhor.cleantestdata.api.service.BaseService;
 import mkhor.cleantestdata.db.dao.cards.CardsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CardsServiceImpl implements CardsService {
+public class CardsServiceImpl extends BaseService implements CardsService {
     @Autowired
     private CardsDao cardsDao;
 
