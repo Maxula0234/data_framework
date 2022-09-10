@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -31,4 +29,10 @@ public class Card {
             defaultValue = "МИР Виртуальная"
     )
     private String cardProduct;
+    @Schema(
+            name = "Блокировка карты",
+            description = "Если карта кем-то используется = true",
+            defaultValue = "false"
+    )
+    private boolean reservedCard;
 }

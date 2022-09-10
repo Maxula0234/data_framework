@@ -2,9 +2,11 @@ package mkhor.cleantestdata.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import mkhor.cleantestdata.api.dto.Result;
 import mkhor.cleantestdata.api.dto.request.card.Card;
 import mkhor.cleantestdata.api.service.cards.CardsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,7 +65,7 @@ public class CardsController extends BaseController {
         return cardsService.addCard(card);
     }
 
-    @PatchMapping("{idCard}")
+    @PostMapping("{idCard}")
     @Operation(
             summary = "Обновить карту"
     )
@@ -77,5 +79,22 @@ public class CardsController extends BaseController {
     )
     public void deleteCard(@PathVariable long idCard) {
         cardsService.deleteCard(idCard);
+    }
+
+    @PatchMapping(value = "{idCard}")
+    @Operation(summary = "Зарезервировать карту")
+    public Result reserveCard(@PathVariable long idCard) {
+        boolean b = cardsService.reservedCard(idCard);
+        if (b) {
+            return Result.builder()
+                    .message("Карта " + idCard + " зарезервирована")
+                    .httpStatus(HttpStatus.OK)
+                    .build();
+        } else {
+            return Result.builder()
+                    .message("Карта " + idCard + " не зарезервирована")
+                    .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
+        }
     }
 }

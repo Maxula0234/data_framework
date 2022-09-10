@@ -12,7 +12,7 @@ public interface CardsService {
 
     Card updateCard(long idCard, Card card);
 
-    boolean reservedCard(Card card);
+    boolean reservedCard(long idCard);
 
     Card addCard(Card card);
 

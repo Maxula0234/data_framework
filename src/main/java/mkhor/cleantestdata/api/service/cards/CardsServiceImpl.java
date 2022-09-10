@@ -29,8 +29,16 @@ public class CardsServiceImpl extends BaseService implements CardsService {
     }
 
     @Override
-    public boolean reservedCard(Card card) {
-        return false;
+    public boolean reservedCard(long idCard) {
+        Card card = getCard(idCard);
+
+        if (card.isReservedCard()) {
+            logger.info("Карта уже зарезервирована");
+        } else {
+            card.setReservedCard(true);
+            updateCard(card.getId(), card);
+        }
+        return true;
     }
 
     @Override

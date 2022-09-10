@@ -45,12 +45,14 @@ public class CardsDaoImpl extends BaseDao implements CardsDao {
                         "pan='%s', " +
                         "owner='%s', " +
                         "date_issued=cast('%s' as date), " +
-                        "card_product='%s' " +
+                        "card_product='%s', " +
+                        "reserve = '%b' " +
                         "WHERE id = '%s'",
                 card.getPan(),
                 card.getOwner(),
                 card.getDateIssued(),
                 card.getCardProduct(),
+                card.isReservedCard(),
                 idCard);
 
         getJdbcTemplate().update(query);
@@ -65,12 +67,13 @@ public class CardsDaoImpl extends BaseDao implements CardsDao {
 
     @Override
     public Card addCard(Card card) {
-        String query = String.format("insert into cards (pan,owner,date_issued,card_product) " +
-                        "VALUES ('%s','%s',cast('%s' as date),'%s')",
+        String query = String.format("insert into cards (pan,owner,date_issued,card_product,reserve) " +
+                        "VALUES ('%s','%s',cast('%s' as date),'%s',%b)",
                 card.getPan(),
                 card.getOwner(),
                 card.getDateIssued(),
-                card.getCardProduct()
+                card.getCardProduct(),
+                card.isReservedCard()
         );
 
         getJdbcTemplate().update(query);

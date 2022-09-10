@@ -27,6 +27,9 @@ public class CardMapper implements RowMapper<Card> {
         if (ResultSetUtils.containsColumn(rs, "card_product")) {
             card.setCardProduct(rs.getString("card_product"));
         }
+        if (ResultSetUtils.containsColumn(rs, "reserve")) {
+            card.setReservedCard(rs.getBoolean("reserve"));
+        }
 
         return card;
     }
