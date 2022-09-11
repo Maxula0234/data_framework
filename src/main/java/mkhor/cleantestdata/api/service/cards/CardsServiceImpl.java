@@ -1,62 +1,53 @@
 package mkhor.cleantestdata.api.service.cards;
 
 import mkhor.cleantestdata.api.dto.request.card.Card;
-import mkhor.cleantestdata.api.exception.CardNotFoundException;
+import mkhor.cleantestdata.api.service.BaseService;
+import mkhor.cleantestdata.db.dao.cards.CardsDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class CardsServiceImpl implements CardsService {
-
-    List<Card> allCard = new ArrayList<>();
+public class CardsServiceImpl extends BaseService implements CardsService {
+    @Autowired
+    private CardsDao cardsDao;
 
     @Override
     public Card getCard(long idCard) {
-        return allCard.stream().filter(card -> card.getId() == idCard).findFirst().orElseThrow(() -> new CardNotFoundException("Card not found, id - " + idCard));
+        return cardsDao.getCard(idCard);
     }
 
     @Override
     public List<Card> getCards() {
-        return allCard;
+        return cardsDao.getCards();
     }
 
     @Override
-    public void updateCard(Card cardUpdate) {
-        Card cardFromBd = allCard.stream()
-                .filter(c -> c.getId() == cardUpdate.getId())
-                .findFirst()
-                .orElseThrow(() -> new CardNotFoundException("Карта не найдена"));
-
-        if (cardFromBd.getId() != cardFromBd.getId())
-            cardFromBd.setId(cardFromBd.getId());
-        if (!cardFromBd.getCardProduct().equalsIgnoreCase(cardUpdate.getCardProduct()))
-            cardFromBd.setCardProduct(cardUpdate.getCardProduct());
-        if (cardFromBd.getDateIssued() != cardUpdate.getDateIssued())
-            cardFromBd.setDateIssued(cardUpdate.getDateIssued());
-        if (!cardFromBd.getOwner().equalsIgnoreCase(cardUpdate.getOwner()))
-            cardFromBd.setOwner(cardUpdate.getOwner());
-
-        addCard(cardFromBd);
+    public Card updateCard(long idCard, Card cardUpdate) {
+        return cardsDao.updateCard(idCard, cardUpdate);
     }
 
     @Override
-    public boolean reservedCard(Card card) {
-        return false;
+    public boolean reservedCard(long idCard) {
+        Card card = getCard(idCard);
+
+        if (card.isReservedCard()) {
+            logger.info("Карта уже зарезервирована");
+        } else {
+            card.setReservedCard(true);
+            updateCard(card.getId(), card);
+        }
+        return true;
     }
 
     @Override
     public Card addCard(Card card) {
-        Optional<Card> first = allCard.stream()
-                .filter(c -> c.getId() == card.getId())
-                .findFirst();
-        if (first.isPresent()) {
-            return card;
-        } else {
-            allCard.add(card);
-            return card;
-        }
+        return cardsDao.addCard(card);
+    }
+
+    @Override
+    public void deleteCard(long idCard) {
+        cardsDao.deleteCard(idCard);
     }
 }

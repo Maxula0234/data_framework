@@ -2,17 +2,17 @@ package mkhor.cleantestdata.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import mkhor.cleantestdata.api.service.clients.ClientsService;
 import mkhor.cleantestdata.api.dto.request.client.Client;
+import mkhor.cleantestdata.api.service.clients.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("clients")
+@RequestMapping("${application.endpoint.clients}")
 @Tag(name = "Client", description = "Сервис для взаимодействия с тестовыми клиентами")
-public class ClientController {
+public class ClientController extends BaseController {
 
     @Autowired
     private ClientsService clientsService;
@@ -61,6 +61,15 @@ public class ClientController {
     public void reservedClient(@PathVariable long idClient) {
         Client client = getClient(idClient);
         client.setReserve(true);
-        clientsService.updateClient(client);
+        clientsService.updateClient(client, idClient);
+    }
+
+    @PatchMapping("{idClient}")
+    @Operation(
+            summary = "Обновить клиента",
+            description = "Позволяет обновить клиента"
+    )
+    public void updateClient(@RequestBody Client client, @PathVariable long idClient) {
+        clientsService.updateClient(client, idClient);
     }
 }

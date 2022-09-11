@@ -13,6 +13,6 @@ public interface ClientsService {
 
     List<Client> getClients();
 
-    void updateClient(Client client);
+    void updateClient(Client client,long idClient);
 }
 
