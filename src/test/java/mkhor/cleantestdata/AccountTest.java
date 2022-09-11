@@ -73,7 +73,6 @@ public class AccountTest extends BaseTest {
     }
 
     @Test
-    @RepeatedTest(20)
     void addAccount() {
         addAccountPrecondition();
         logger.info("Счет добавлен в базу");
