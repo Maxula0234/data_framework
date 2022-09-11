@@ -1,18 +1,20 @@
-package mkhor.cleantestdata.api.service.cards;
+package mkhor.cleantestdata.db.dao.cards;
 
 import mkhor.cleantestdata.api.dto.request.card.Card;
 
 import java.util.List;
 
-public interface CardsService {
+public interface CardsDao {
 
     Card getCard(long idCard);
+
+    Card getCard(String pan);
 
     List<Card> getCards();
 
     Card updateCard(long idCard, Card card);
 
-    boolean reservedCard(long idCard);
+    boolean reservedCard(Card card);
 
     Card addCard(Card card);
 
