@@ -13,6 +13,8 @@ public interface ClientsService {
 
     List<Client> getClients();
 
-    void updateClient(Client client,long idClient);
+    void updateClient(Client client, long idClient);
+
+    void reserveClient(long idClient);
 }
 

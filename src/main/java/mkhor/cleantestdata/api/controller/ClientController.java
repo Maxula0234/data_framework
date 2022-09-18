@@ -59,10 +59,9 @@ public class ClientController extends BaseController {
             description = "Позволяет забукировать клиентов"
     )
     public void reservedClient(@PathVariable long idClient) {
-        Client client = getClient(idClient);
-        client.setReserve(true);
-        clientsService.updateClient(client, idClient);
+        clientsService.reserveClient(idClient);
     }
+
 
     @PatchMapping("{idClient}")
     @Operation(

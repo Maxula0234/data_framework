@@ -6,10 +6,13 @@ import mkhor.cleantestdata.api.dto.Result;
 import mkhor.cleantestdata.api.dto.request.card.Card;
 import mkhor.cleantestdata.api.service.cards.CardsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,8 +28,11 @@ public class CardsController extends BaseController {
             summary = "Получить карту по идентификатору",
             description = "Позволяет получить карту клиента"
     )
-    public Card getCard(@PathVariable long idCard) {
-        return cardsService.getCard(idCard);
+    public ResponseEntity<Card> getCard(@PathVariable long idCard) {
+        Card card = cardsService.getCard(idCard);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("token", UUID.randomUUID().toString());
+        return new ResponseEntity<>(card, httpHeaders, HttpStatus.OK);
     }
 
     @GetMapping()

@@ -106,4 +106,18 @@ class ClientTest extends BaseTest {
         );
         logger.info("Получен клиент " + client.getId() + ", клиент корректен");
     }
+
+    @Test
+    void reserveClient() {
+        List<Client> clients = clientsService.getClients();
+        Client client = clients.stream()
+                .filter(c -> !c.isReserve())
+                .findFirst()
+                .orElseThrow(() -> new ClientNotFoundException("Клиент не найден"));
+
+        clientsService.reserveClient(client.getId());
+
+        Client updateClient = clientsService.getClient(client.getId());
+        assertThat(updateClient.isReserve()).isTrue();
+    }
 }

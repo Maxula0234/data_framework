@@ -42,4 +42,12 @@ public class ClientsServiceImpl extends BaseService implements ClientsService {
     public void updateClient(Client client, long idClient) {
         clientsDao.updateClient(client, idClient);
     }
+
+    @Override
+    public void reserveClient(long idClient) {
+        Client client = getClient(idClient);
+        client.setReserve(true);
+        updateClient(client, idClient);
+        logger.info("Зарезервировали клиента - " + idClient);
+    }
 }
