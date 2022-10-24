@@ -118,23 +118,6 @@ public class AccountTest extends BaseTest {
         assertThat(account).isEqualTo(newAccount);
     }
 
-    @Test
-    public void teststts() {
-        /**
-         * Есть коллеция с объявлениями
-         * создать функцию, которая отфильтрует мапу и выдаст только те цены которые указанны пользователем
-         *
-         */
-
-        Map<String, Integer> ds = Map.of("Petr", 100, "Max", 123, "ivan", 123123, "sergey", 43343, "Stepan", 554, "Enot", 553);
-
-
-        filter(ds, 200);
-        filter(ds, 600);
-
-
-    }
-
     private void filter(Map<String, Integer> ds, int amount) {
         Map<String, Integer> collect = ds.entrySet().stream().filter(item -> item.getValue() > amount).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
 
